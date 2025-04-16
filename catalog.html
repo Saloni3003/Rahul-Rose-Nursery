@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>RAHUL ROSE NURSERY | Plant Nursery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 10px;
+        }
+
+        .product-details.open {
+            max-height: 200px;
+            padding: 10px;
+        }
+
+        .catalog-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card {
+            width: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .product-image {
+            width: 100%;
+            display: block;
+        }
+
+        .heart-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .heart-icon svg {
+            fill: #ccc;
+            transition: fill 0.3s ease;
+        }
+
+        .heart-icon.favorited {
+            background-color: #ffe5e5;
+        }
+
+        .heart-icon.favorited svg {
+            fill: red;
+        }
+        
+        footer {
+            margin-top: 50px;
+            background-color: #f0f0f0;
+            padding: 40px 20px 10px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="announcement-bar">
+        "Fresh air, happy vibes, and leafy friends — welcome to your green escape!"
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="images.jpeg" alt="Rahul Rose Nursery Logo">
+            <span class="logo-text">RAHUL ROSE NURSERY</span>
+        </div>
+
+        <nav class="navbar">
+            <ul class="nav-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="catalog.html">Catalog</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+          
+    </header>
+
+    <div class="catalog-header">
+        <h1>Our Plant Collection</h1>
+
+        <div class="catalog-filters">
+
+            <button class="filter-btn active" onclick="filterProducts('all', event)">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('indoor', event)">Indoor Plants</button>
+            <button class="filter-btn" onclick="filterProducts('outdoor', event)">Outdoor Plants</button>
+            <button class="filter-btn" onclick="filterProducts('decor', event)">Decor</button>
+            <button class="filter-btn" onclick="filterProducts('hanging', event)">Hanging Plants</button>
+            <button class="filter-btn" onclick="filterProducts('pots', event)">Pots & Planters</button>
+            <button class="filter-btn" onclick="filterProducts('care', event)">Plant Care</button>
+
+        </div>
+    </div>
+
+    <div class="catalog-grid" id="catalogGrid">
+        <div class="product-card indoor">
+            <div class="product-image-wrapper">
+                <img src="Betelleafplant.png" alt="Betel Leaf Plant" class="product-image">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Betel Leaf Plant</h3>
+                <p class="product-price">Rs 199</p>
+                <div class="product-details">A traditional plant known for its health and cultural value. Easy to grow.</div>
+                <button class="toggle-details">Show More</button>
+            </div>
+        </div>
+
+        <div class="product-card decor">
+            <div class="product-image-wrapper">
+                <img src="Buddha.png" alt="Buddha Statue" class="product-image">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Buddha Statue</h3>
+                <p class="product-price">Rs 499</p>
+                <div class="product-details">Peaceful vibes for your home — perfect for decor and gifting.</div>
+                <button class="toggle-details">Show More</button>
+            </div>
+        </div>
+
+        <div class="product-card decor">
+            <div class="product-image-wrapper">
+                <img src="hanger.png" alt="Decor" class="product-image">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Terracotta Ceramic Hanging</h3>
+                <p class="product-price">Rs 429</p>
+                <div class="product-details">Add rustic charm to your space with this handcrafted terracotta hanger.</div>
+                <button class="toggle-details">Show More</button>
+            </div>
+        </div>
+
+        <div class="product-card indoor">
+            <div class="product-image-wrapper">
+                <img src="Aglaonema.png" alt="Aglaonema Plant" class="product-image">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Aglaonema Plant</h3>
+                <p class="product-price">Rs 350</p>
+                <div class="product-details">A low-maintenance indoor plant perfect for beginners. Loves indirect light.</div>
+                <button class="toggle-details">Show More</button>
+            </div>
+        </div>
+
+            <div class="product-card outdoor">
+                <div class="product-image-wrapper">
+                    <img src="Chry.png" alt="Chrysanthemum ×grandiflorum" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Chrysanthemum ×grandiflorum Plant</h3>
+                    <p class="product-price">Rs 242</p>
+                    <div class="product-details">A classic flowering plant with lush, colorful blooms that brighten any space. Best grown outdoors in sunny spots; perfect for pots, borders, or seasonal displays.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card outdoor">
+                <div class="product-image-wrapper">
+                    <img src="Crested.png" alt="Crested Cock's-comb" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Crested Cock's-comb Plant</h3>
+                    <p class="product-price">Rs 799</p>
+                    <div class="product-details">A striking ornamental plant with bold, velvety flower heads that resemble coral. Thrives outdoors in sunny spots and adds vibrant color to gardens and containers.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+        
+            <div class="product-card indoor" >
+                <div class="product-image-wrapper">
+                    <img src="Portulacaria.png" alt="Portulacaria Afra Plant" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Portulacaria Afra Plant</h3>
+                    <p class="product-price">Rs 2500</p>
+                    <div class="product-details">A hardy succulent with small, glossy leaves and reddish stems. Great for beginners! Can be grown indoors in bright light or outdoors in warm, dry spots.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card indoor" >
+                <div class="product-image-wrapper">
+                    <img src="Rubberplant.png" alt="Baby Rubber Plant" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Baby Rubber Plant</h3>
+                    <p class="product-price">Rs 380</p>
+                    <div class="product-details">A charming, compact houseplant with thick, glossy leaves. Low-maintenance and pet-friendly, it’s perfect for bright indoor spaces and makes a lovely desk or shelf companion.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+            
+
+            <div class="product-card indoor" >
+                <div class="product-image-wrapper">
+                    <img src="Florist.png" alt="Florist Kalanchoe" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Florist Kalanchoe</h3>
+                    <p class="product-price">Rs 380</p>
+                    <div class="product-details">A cheerful succulent with clusters of vibrant blooms that last for weeks. Perfect for bright indoor spots or sunny patios. Low-maintenance and great for gifting.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card indoor" >
+                <div class="product-image-wrapper">
+                    <img src="Dracona.png" alt="Dracaena Trifasciata" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Dracaena Trifasciata</h3>
+                    <p class="product-price">Rs 899</p>
+                    <div class="product-details">Also known as Snake Plant.A tough, air-purifying plant with upright sword-like leaves. Perfect for beginners, thrives indoors with minimal care, and tolerates low light with ease.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Plastic Flower Pot.png" alt="Flower Plastic Pot" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">8 inch Flower Plastic Pot</h3>
+                    <p class="product-price">Rs 440</p>
+                    <div class="product-details">8 inch height decal effect modern design plastic material flower pot</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card care" >
+                <div class="product-image-wrapper">
+                    <img src="Scissors.png" alt="Flora Pruning Shear Scissors" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Flora Pruning Shear Scissors</h3>
+                    <p class="product-price">Rs 215</p>
+                    <div class="product-details">Durable, rust-resistant garden shears designed for precise, clean cuts. Ideal for trimming stems, shaping plants, and maintaining healthy growth in your garden or indoor jungle.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+            
+            <div class="product-card hanging" >
+                <div class="product-image-wrapper">
+                    <img src="Citrus.png" alt="Kanaya Petunia Plant" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Kanaya Petunia</h3>
+                    <p class="product-price">Rs 500</p>
+                    <div class="product-details">A vibrant flowering plant known for its bright, trumpet-shaped blooms. Perfect for hanging baskets or garden borders. Best suited for outdoor spaces with full to partial sunlight.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card decor" >
+                <div class="product-image-wrapper">
+                    <img src="Facemask.png" alt="Facemask" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Face Mask</h3>
+                    <p class="product-price">Rs 50</p>
+                    <div class="product-details">Get ready for giggles and gasps! This lightweight plastic mask is perfect for kids who love a little mischief. Great for costume parties, Halloween, or just scaring your siblings for fun!</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card decor" >
+                <div class="product-image-wrapper">
+                    <img src="Stand.png" alt="flower pot stand" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Flower Pot Stand </h3>
+                    <p class="product-price">Rs 500</p>
+                    <div class="product-details">Stylish and sturdy, this flower pot stand is perfect for displaying your favorite plants indoors or outdoors. Elevate your green space with charm and elegance — ideal for balconies, patios, or living rooms.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="EarthenPot.png" alt="Earthen pot" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Painted Earthen Pot</h3>
+                    <p class="product-price">Rs 450</p>
+                    <div class="product-details">A blend of tradition and art — this handcrafted terracotta pot features vibrant designs that bring earthy charm to any corner. Perfect for indoor plants, balconies, or as rustic decor.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card decor" >
+                <div class="product-image-wrapper">
+                    <img src="Earthen bottle.png" alt="Earthen bottle" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Fancy Earthen Bottles</h3>
+                    <p class="product-price">Rs 250</p>
+                    <div class="product-details">Naturally cool, eco-friendly, and chemical-free — this earthen bottle keeps your water fresh the traditional way. A perfect blend of wellness and sustainability, ideal for daily use at home or on the go.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Duckpot1.png" alt="Elegant Swan Ceramic Pot" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Elegant Swan Ceramic Pot</h3>
+                    <p class="product-price">Rs 300</p>
+                    <div class="product-details">Grace your garden or living space with this beautifully crafted swan-shaped ceramic pot. Its smooth white finish and serene pose add a touch of elegance and charm — perfect for succulents or decorative plants.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="duckpot2.png" alt="Aqua-Tint Duck Ceramic Pot" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Aqua-Tint Duck Ceramic Pot</h3>
+                    <p class="product-price">Rs 300</p>
+                    <div class="product-details">Whimsical and eye-catching, this duck-shaped ceramic planter features vibrant aqua detailing and a cheerful expression. Ideal for both indoor and outdoor decor, it brings a fun, playful vibe to any setting.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="duckpot3.png" alt="Crane-Inspired Bird Pot" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Crane-Inspired Bird Pot</h3>
+                    <p class="product-price">Rs 300</p>
+                    <div class="product-details">With its long neck and gentle curves, this crane-style ceramic pot is a unique blend of art and utility. The subtle green and red accents make it a standout piece for your favorite small plants or herbs.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card care" >
+                <div class="product-image-wrapper">
+                    <img src="Vermicompost.png" alt="Vermicompost" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Vermicompost </h3>
+                    <p class="product-price">Rs 400</p>
+                    <div class="product-details">Enrich your soil naturally with our 100% organic vermicompost. Packed with nutrients and beneficial microbes, it's perfect for boosting plant growth, improving soil health, and keeping your garden chemical-free.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card care" >
+                <div class="product-image-wrapper">
+                    <img src="Noil.png" alt="N-oil " class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">N-oil</h3>
+                    <p class="product-price">Rs 350</p>
+                    <div class="product-details">Harness the natural power of neem! N-Oil is a plant-based, eco-friendly solution that protects your plants from pests and diseases while boosting overall health. Safe, effective, and 100% natural.</div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card care" >
+                <div class="product-image-wrapper">
+                    <img src="watersprayer.png" alt="Water Sprayer" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Water Sprayer</h3>
+                    <p class="product-price">Rs 100</p>
+                    <div class="product-details">Keep your plants happy and hydrated with this easy-to-use water sprayer. Designed for comfort and precision, it's perfect for misting delicate leaves or giving your garden a refreshing shower.
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Meditating.png" alt="Meditating Buddha Planter" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Meditating Buddha Planter</h3>
+                    <p class="product-price">Rs 150</p>
+                    <div class="product-details">Bring peace and calm to your plant space with this intricately crafted Buddha head planter. Hand-painted with subtle hues of blue and pink, it adds a spiritual touch to your garden or indoor sanctuary. Ideal for small succulents or air plants.
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Ceramic.png" alt="Ceramic Turtle Planter" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Ceramic Turtle Planter</h3>
+                    <p class="product-price">Rs 150</p>
+                    <div class="product-details">Add a whimsical charm to your home with this adorable turtle-shaped ceramic planter. Its glossy finish and sturdy design make it perfect for indoor plants like ferns or trailing vines. A delightful pick for animal lovers!
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Twin.png" alt="Twin Ceramic Elephant Planters" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Twin Ceramic Elephant Planters</h3>
+                    <p class="product-price">Rs 150</p>
+                    <div class="product-details">Double the cuteness with these white ceramic elephant planters featuring vivid orange ears and charming expressions. Perfect for gifting or sprucing up your home decor. Ideal for small succulents or desk plants.
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Rose-patterned.png" alt=" Elegant Rose-Patterned Pot" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title"> Elegant Rose-Patterned Pot</h3>
+                    <p class="product-price">Rs 150</p>
+                    <div class="product-details">A beautiful fusion of art and utility, this large ceramic pot with a scalloped edge and floral design is perfect for medium-sized plants. The pink and cream combo adds a graceful touch to balconies, patios, or indoor corners.
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Elephant.png" alt="Elephant-Themed Mini Planters" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Elephant-Themed Mini Planters</h3>
+                    <p class="product-price">Rs 150</p>
+                    <div class="product-details">Quirky and colorful, these mini planters in white and green are shaped like adorable elephants. Their playful design makes them a fun home for cacti or baby succulents. A great choice for kids’ rooms or cozy corners.
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Matte.png" alt="Matte Black Striped Planter" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Matte Black Striped Planter</h3>
+                    <p class="product-price">Rs 150</p>
+                    <div class="product-details">Minimalist and modern, this matte black ceramic planter with sleek red stripes offers a sophisticated look. Best suited for bold leafy plants, it's a stylish addition to both indoor and outdoor settings.
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+            <div class="product-card pots" >
+                <div class="product-image-wrapper">
+                    <img src="Tribal.png" alt="Tribal Lady Wall Planter" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Tribal Lady Wall Planter</h3>
+                    <p class="product-price">Rs 150</p>
+                    <div class="product-details">Celebrate traditional Indian artistry with this wall-mounted planter featuring a vividly painted tribal lady in rich hues. Perfect as a statement piece, it blends culture and greenery seamlessly, ideal for narrow walls or balconies.
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+
+            <div class="product-card hanging" >
+                <div class="product-image-wrapper">
+                    <img src="Portulacaria afra.png" alt="Portulacaria afra" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Portulacaria afra</h3>
+                    <p class="product-price">Rs 450</p>
+                    <div class="product-details">A hardy, low-maintenance succulent with glossy green leaves and reddish stems. Perfect for pots, bonsai, or succulent arrangements. Drought-tolerant, beginner-friendly, and great for indoor or outdoor spaces.
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+
+            <div class="product-card outdoor" >
+                <div class="product-image-wrapper">
+                    <img src="Golden.png" alt="Golden Pothos" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Golden Pothos</h3>
+                    <p class="product-price">Rs 250</p>
+                    <div class="product-details">A popular trailing plant with vibrant heart-shaped green leaves splashed with golden-yellow variegation. Easy to care for, air-purifying, and perfect for hanging baskets or tabletop planters. Thrives in low to bright light—ideal for homes and offices.
+
+                    </div>
+                    <button class="toggle-details">Show More</button>
+                </div>
+            </div>
+
+
+
+    </div>
+
+    <footer style="background-color: #1a3c31; padding: 20px 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; text-align: center;">
+            
+            <!-- Left: Logo -->
+            <div style="flex: 1; min-width: 200px; text-align: left;">
+                <img src="images.jpeg" alt="Rahul Rose Nursery Logo" style="height: 200px;">
+            </div>
+    
+            <!-- Middle: Address & Hours -->
+            <div style="flex: 1; min-width: 200px; padding: 10px;">
+                <p style="color: #ffffff; font-weight: 600;">Visit Us</p>
+                <p style="color: #d2e6dd; font-size: 14px;">Rahul Rose Nursery<br>Near Lions Police Club<br> Sector 26 <br> Nigdi, Pradhikaran</p>
+                <p style="color: #ffffff; font-weight: 600; margin-top: 10px;">Hours</p>
+                <p style="color: #d2e6dd; font-size: 14px;">Mon-Sun: 8am-10pm</p>
+            </div>
+    
+            <!-- Right: Tagline + Social Icons -->
+            <div style="flex: 1; min-width: 200px; text-align: right;">
+                <p style="font-size: 18px; margin-bottom: 10px; color: #ffffff;">🌿 Growing joy, one plant at a time.</p>
+                <div style="display: inline-flex; gap: 15px; align-items: center;">
+                    <a href="https://www.instagram.com/rahulrosenursery_1?igsh=ZXpxOGczcG1raHMy" target="_blank" aria-label="Instagram">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="#FFB6C1" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.51 4.51 0 0 0 12 7.5zm0 7.2a2.7 2.7 0 1 1 2.7-2.7 2.71 2.71 0 0 1-2.7 2.7zm4.75-7.9a1 1 0 1 1-1-1 1 1 0 0 1 1 1z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/share/1Bpwfp144h/" target="_blank" aria-label="Facebook">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="#91bdf2" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-3h2.4V9.5C10.4 7.6 11.8 6.4 13.9 6.4c1.1 0 2.1.1 2.1.1v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6v1.9H16l-.3 3h-2.2v7A10 10 0 0 0 22 12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Bottom -->
+        <div style="text-align: center; padding-top: 15px; font-size: 14px; color: #b3c5c0;">
+            <p>&copy; 2025 Rahul Rose Nursery. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function filterProducts(category, e) {
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                if (category === 'all' || product.classList.contains(category)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+        }
+
+        document.querySelectorAll('.toggle-details').forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.previousElementSibling;
+                details.classList.toggle('open');
+                button.textContent = details.classList.contains('open') ? 'Show Less' : 'Show More';
+            });
+        });
+    </script>
+</body>
+
+</html>
